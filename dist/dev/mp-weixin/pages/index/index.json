@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "慧明慧行",
-  "navigationBarBackgroundColor": "#FFF",
-  "enablePullDownRefresh": true,
-  "onReachBottomDistance": 50,
-  "usingComponents": {
-    "my-tab-bar": "/components/MyTabBar/MyTabBar"
-  }
-}

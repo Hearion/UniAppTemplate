@@ -1,1 +1,0 @@
-<view><view>index</view><view data-event-opts="{{[['tap',[['onGoToLogin',['$event']]]]]}}" bindtap="__e">GoToLogin</view></view>
