@@ -1,0 +1,1 @@
+<view style="padding:20rpx;"><web-view src="{{data+'?time='+timeNow}}"></web-view></view>
