@@ -1,21 +1,14 @@
-# my-project
+# UniAppTemplate
 
-## Project setup
+## 项目启动
 
-- Need Node.js version `15.1.0`
+- 需要 Node.js 版本 `15.1.0`
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+### 参考文档
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 参考 [UniApp官网](https://uniapp.dcloud.net.cn/).
+- 参考 [uView2.0官网](https://www.uviewui.com/).
+- 参考 [微信小程序开发者文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)
