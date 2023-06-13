@@ -11,6 +11,8 @@
 yarn install
 ```
 
+- 依赖安装后建议使用 `HbuilderX` 运行。
+
 ## 集成方法
 
 - 文件转 base64
