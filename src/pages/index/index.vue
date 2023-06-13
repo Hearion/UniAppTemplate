@@ -3,18 +3,15 @@
 		<view>index</view>
 		<view @click="onGoToLogin">GoToLogin</view>
 
-<!--		<MyTabBar :value="0"/>-->
+		<MTabBar :value="0"/>
 	</view>
 
 </template>
 
 <script>
-	import MyTabBar from "@/components/MyTabBar/MyTabBar.vue";
 
 	export default {
-		components: {
-			MyTabBar
-		},
+
 		data() {
 			return {
 
