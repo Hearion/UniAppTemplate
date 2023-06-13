@@ -3,11 +3,25 @@
         <!-- 生成等高元素防止塌陷 -->
         <view :style="{paddingBottom: 66 + safeAreaInsets.bottom + 'px'}"/>
 
-        <view class="flexRowAroundCenter tabBar" :style="{background: '#FFF', position: 'fixed',  zIndex: 500, bottom: 0, paddingBottom: safeAreaInsets.bottom + 'px'}">
+        <view
+            class="flexRowAroundCenter tabBar"
+            :style="{
+                background,
+                position: 'fixed',
+                zIndex: 500,
+                bottom: 0,
+                paddingBottom: safeAreaInsets.bottom + 'px'
+            }"
+        >
             <view  v-for="(item, index) in tabBarList" :key="item.icon">
                 <view @click="onTabBarChange(index)" class="flexColumnCenter" style="padding: 0 60rpx" >
-                    <u-icon :name="item.icon" size="50rpx" :color="value === index ? '#3c9cff' : '#9E9F9F'"/>
-                    <view :class="value === index ? 'activeText' : 'tabText'">{{item.text}}</view>
+                    <u-icon :name="item.icon" size="50rpx" :color="value === index ? activeColor : '#9E9F9F'"/>
+                    <view
+                        :class="value === index ? 'activeText' : 'tabText'"
+                        :style="{color: value === index ? activeColor : '#9E9F9F'}"
+                    >
+                        {{item.text}}
+                    </view>
                 </view>
             </view>
         </view>
@@ -17,7 +31,23 @@
 <script>
 	export default {
 		name: "MyTabBar",
-		props: ['value'],
+		props: {
+            value: {
+                type: Number,
+                required: true,
+                default: 0
+            },
+            activeColor: {
+                type: String,
+                required: false,
+                default: '#3c9cff'
+            },
+            background: {
+                type: String,
+                required: false,
+                default: '#FFFFFF'
+            },
+        },
 		data() {
 			return {
 				tabBarList: [
@@ -35,7 +65,7 @@
                 windowWidth: 0,
                 windowHeight: 0,
                 safeAreaInsets: {},
-                isAdmin: false
+                isAdmin: false,
 			}
 		},
         beforeMount() {

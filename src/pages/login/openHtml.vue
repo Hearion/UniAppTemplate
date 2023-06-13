@@ -1,5 +1,6 @@
 <template>
     <view style="padding: 20rpx">
+        <!-- 地址路径增加时间戳 防止硬缓存 -->
         <web-view :src="data + '?time=' + timeNow"></web-view>
     </view>
 </template>
