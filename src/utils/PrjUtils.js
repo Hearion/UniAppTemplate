@@ -118,3 +118,73 @@ export const carNumReg = /^[\u4e00-\u9fa5]{1}[A-Z]{1}[A-Z_0-9]{5}$/
 
 // 验证身份证号
 export const cardIdReg = /^[1-9]\d{5}(19\d{2}|2\d{3})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[0-9xX]$/;
+
+
+/**
+ * 数值转时分秒
+ * @param second
+ * @returns {string}
+ */
+export const formatTime = (second) => {
+    let h = 0, i = 0, s = parseInt(second);
+    if (s > 60 && s < 3600) {
+        i = parseInt(s / 60);
+        s = parseInt(s % 60);
+    } else if (s >= 3600) {
+        h = parseInt(s / 3600);
+        i = parseInt((s % 3600) / 60);
+        s = parseInt((s % 3600) % 60);
+    }
+    // 补零
+    let zero = function (v) {
+        return (v >> 0) < 10 ? "0" + v : v;
+    };
+
+    return [zero(h), zero(i), zero(s)].join(":");
+
+    // if (h > 0) {
+    //     return [zero(h), zero(i), zero(s)].join(":");
+    // } else {
+    //     return [zero(i), zero(s)].join(":");
+    // }
+}
+
+/**
+ * 获取文件后缀名
+ * @param filename
+ * @returns {*}
+ */
+export const getFileExtension = (filename) => {
+    const ext = filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+    return ext.toLowerCase();
+}
+
+/**
+ * 写入base64数据到本地 目前只支持微信小程序
+ * @param base64
+ * @param fileName
+ */
+export const writeBase64 = (base64, fileName) => {
+    // ifdef MP-WEIXIN
+    let writeAddress = `${wx.env.USER_DATA_PATH}/${Math.floor(Date.now() / 1000) + fileName}`
+    return new Promise((resolve, reject) => {
+        // 获取文件管理器
+        const FileSystemManager = uni.getFileSystemManager();
+        // 注意，base64 编码，data 只需要传 base64 内容本身，不要传 Data URI 前缀，否则会报 fail base64 encode error 错误。
+        // 例如，传 aGVsbG8= 而不是传 data:image/png;base64,aGVsbG8=
+        let base64Str = base64.split('base64,')[1]
+        FileSystemManager.writeFile({
+            // 微信用户路径
+            filePath: writeAddress,
+            data: base64Str,
+            encoding: 'base64',
+            success: () => {
+                resolve(writeAddress)
+            },
+            fail: (err) => {
+                reject(err)
+            }
+        })
+    })
+    // endif
+}

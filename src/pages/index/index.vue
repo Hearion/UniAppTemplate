@@ -3,6 +3,7 @@
 		<view>index</view>
 		<view @click="onGoToLogin">GoToLogin</view>
 
+
 		<MTabBar :value="0" :active-color="'red'"/>
 	</view>
 
